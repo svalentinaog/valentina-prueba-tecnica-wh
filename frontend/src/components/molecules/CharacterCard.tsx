@@ -1,6 +1,7 @@
 import type { Character } from "@/types/character";
 import { Link } from "react-router-dom";
 import { CharacterImage } from "@/components/atoms/CharacterImage";
+import { DEFAULT_CHARACTER_IMG, normalizeImageSrc } from "@/utils/images";
 
 interface CharacterCardProps {
   character: Character;
@@ -26,8 +27,9 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
       >
         <div className="relative w-full aspect-square bg-gray-200">
           <CharacterImage
-            src={img}
+            src={normalizeImageSrc(img, DEFAULT_CHARACTER_IMG)}
             alt={name}
+            fallbackSrc={DEFAULT_CHARACTER_IMG}
             className="absolute inset-0 w-full h-full object-cover"
           />
 
@@ -40,6 +42,7 @@ export const CharacterCard = ({ character }: CharacterCardProps) => {
             </div>
             <div className="rounded-full w-fit px-4 bg-gray-200 flex items-center justify-center">
               <p className="text-lg text-gray-600 truncate w-full max-w-xs">
+                {/* // films */}
                 {description}
               </p>
             </div>

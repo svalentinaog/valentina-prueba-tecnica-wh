@@ -52,6 +52,7 @@ npm run dev
 
 ```
 
-Acceder en: `http://localhost:5173`
+Acceder cliente en: `http://localhost:5173`
+Acceder servidor en: `http://localhost:3000`
 
 Att: Valentina Ortiz 😉

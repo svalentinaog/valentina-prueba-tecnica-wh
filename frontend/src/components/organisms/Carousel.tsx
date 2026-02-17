@@ -3,7 +3,7 @@ import { useCarousel } from "@/hooks/useCarousel";
 import type { Character } from "@/types/character";
 import { DEFAULT_CHARACTER_IMG, normalizeImageSrc } from "@/utils/images";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
+import { Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -23,10 +23,11 @@ export const Carousel = ({ items }: CarouselProps) => {
   return (
     <section className="w-full h-auto flex flex-col items-center justify-center gap-8">
       <Swiper
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         slidesPerView={3}
         centeredSlides
         spaceBetween={12}
+        autoplay={{ delay: 2500, disableOnInteraction: false }}
         pagination={{ clickable: true }}
         onSlideChange={handleSlideChange}
         onAfterInit={handleAfterInit}

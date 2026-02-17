@@ -9,7 +9,6 @@ import { ENVS } from "../config/envs";
 class DisneyService {
   private readonly API_URL = ENVS.DISNEY_API_URL;
 
-  // 1. All Disney characters
   async getAllCharacters() {
     try {
       const response = await axios.get<DisneyApiResponse>(this.API_URL);
@@ -32,7 +31,6 @@ class DisneyService {
     }
   }
 
-  // 2. Disney character by ID
   async getCharacterById(disneyId: string) {
     try {
       const response = await axios.get<DisneySingleResponse>(

@@ -6,6 +6,7 @@ export default function HomePage() {
   const {
     characters,
     paginatedCharacters,
+    sliderCharacters,
     totalPages,
     isLoading,
     isError,
@@ -16,6 +17,7 @@ export default function HomePage() {
   const { mutateAsync: createCharacter, isPending: isCreating } =
     createMutation;
   const items = characters?.items ?? [];
+  const sliderItems = sliderCharacters.length ? sliderCharacters : items;
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
@@ -48,7 +50,7 @@ export default function HomePage() {
 
   return (
     <HomeTemplate
-      sliderItems={items.slice(0, 15)}
+      sliderItems={sliderItems}
       listItems={paginatedCharacters}
       currentPage={page}
       totalPages={totalPages}

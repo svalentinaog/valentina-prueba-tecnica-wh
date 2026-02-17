@@ -15,7 +15,7 @@ class CharacterController {
       const pageNum = Math.max(1, Number(page) || 1);
       const limitNum = Math.max(1, Number(limit) || 12);
       const [localCharacters, disneyCharacters] = await Promise.all([
-        Character.findAll(),
+        Character.findAll({ order: [["date", "DESC"]] }),
         disneyService.getAllCharacters(),
       ]);
 

@@ -1,8 +1,11 @@
 import { Character } from "../models/characterModel";
 import { AppError } from "../utils/AppError";
-import type { UpdateCharacterType, CreateCharacterType } from "../schemas/characterSchema";
+import type {
+  UpdateCharacterType,
+  CreateCharacterType,
+} from "../schemas/characterSchema";
 
-class CharacterService {
+export class CharacterService {
   private normalizeText(s: string) {
     return s
       .trim()
@@ -24,12 +27,7 @@ class CharacterService {
 
     const imgExists = all.some((c) => c.img.trim() === imgKey);
     if (imgExists) {
-      throw new AppError(
-        "Image already exists",
-        409,
-        "duplicate_img",
-        "img"
-      );
+      throw new AppError("Image already exists", 409, "duplicate_img", "img");
     }
 
     return await Character.create({
@@ -68,14 +66,11 @@ class CharacterService {
 
     if (data.img) {
       const imgKey = data.img.trim();
-      const clash = all.find((c) => c.id !== Number(id) && c.img.trim() === imgKey);
+      const clash = all.find(
+        (c) => c.id !== Number(id) && c.img.trim() === imgKey
+      );
       if (clash) {
-        throw new AppError(
-          "Image already exists",
-          409,
-          "duplicate_img",
-          "img"
-        );
+        throw new AppError("Image already exists", 409, "duplicate_img", "img");
       }
     }
 

@@ -3,7 +3,7 @@ import { useCharacterForm } from "@/hooks/useCharacterForm";
 import type { Character, CreateCharacterDTO } from "@/types/character";
 import { DEFAULT_CHARACTER_IMG } from "@/utils/images";
 import { Controller } from "react-hook-form";
-import { Upload } from "lucide-react";
+import { Upload, CheckCircle } from "lucide-react";
 
 interface CharacterFormProps {
   initialData?: Character | null;
@@ -86,10 +86,22 @@ export const CharacterForm = ({
                   />
                   <label
                     htmlFor="file"
-                    className="w-full text-gray-900 rounded-full bg-gray-200 px-4 py-2 outline-none flex items-center justify-start gap-2 cursor-pointer"
+                    className="w-full rounded-full bg-gray-200 px-4 py-2 text-gray-900 outline-none flex items-center justify-start gap-2 cursor-pointer"
                   >
-                    <Upload className="w-4 h-4 text-gray-500" />
-                    <span>Subir imagen</span>
+                    {isUploading ? (
+                      <Upload className="w-4 h-4 text-gray-500 animate-spin" />
+                    ) : selectedFile ? (
+                      <CheckCircle className="w-4 h-4 text-gray-500" />
+                    ) : (
+                      <Upload className="w-4 h-4 text-gray-500" />
+                    )}
+                    <span>
+                      {isUploading
+                        ? "Subiendo..."
+                        : selectedFile
+                        ? "Imagen adjunta"
+                        : "Subir imagen"}
+                    </span>
                   </label>
                 </div>
               )}

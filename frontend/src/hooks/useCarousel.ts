@@ -3,7 +3,7 @@ import type { Character } from "@/types/character";
 import type { Swiper as SwiperInstance } from "swiper/types";
 
 export const useCarousel = (items: Character[]) => {
-  const MAX_SLIDES = 15;
+  const MAX_SLIDES = 12;
 
   const normalized = useMemo(
     () => items.slice(0, Math.min(items.length, MAX_SLIDES)),

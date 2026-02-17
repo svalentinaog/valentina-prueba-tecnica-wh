@@ -16,6 +16,7 @@ type UpdateCharacterPayload = {
 export const useCharacters = () => {
   const queryClient = useQueryClient();
   const PAGE_SIZE = 4;
+  const SLIDER_LIMIT = 12;
   const [page, setPage] = useState(1);
 
   // --- READ (GET) ---
@@ -26,6 +27,12 @@ export const useCharacters = () => {
     placeholderData: keepPreviousData,
   });
   const { data, isLoading, isError } = query;
+
+  const sliderQuery = useQuery({
+    queryKey: ["characters", "slider", SLIDER_LIMIT],
+    queryFn: () => characterService.getAll(1, SLIDER_LIMIT),
+    staleTime: 1000 * 60 * 5,
+  });
 
   // --- CREATE (POST) ---
   const createMutation = useMutation({
@@ -62,6 +69,7 @@ export const useCharacters = () => {
     // Data
     characters: data,
     paginatedCharacters: data?.items ?? [],
+    sliderCharacters: sliderQuery.data?.items ?? [],
     totalPages: data?.totalPages ?? 1,
     isLoading,
     isError,
